@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <script src='/static/js/jquery.min.js'></script>
+    <title>{% block title %}base{% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+    <nav>
+        <a class="pp-nav-item" href="#">主页</a>
+        <a class="pp-nav-item" href="#">通知</a>
+        <a class="pp-nav-item" href="#">私信</a>
+        <div class="pp-div-bird">
+            <img src="/static/img/twitter.png" id="pp-img-bird" title="just a bird">
+        </div>
+        <div class="pp-div-search">
+            <input id="pp-id-search">
+        </div>
+        <a class="pp-nav-item" href="#">人民公社</a>
+    </nav>
+    <main>
+
+    </main>
+</body>
+</html>
