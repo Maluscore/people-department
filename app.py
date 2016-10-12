@@ -36,7 +36,7 @@ def configure_app():
     app.secret_key = 'secret key'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{}'.format(db_path)
     db.init_app(app)
-    # register_routes(app)
+    register_routes(app)
 
 
 def configured_app():
@@ -51,8 +51,8 @@ def server():
     # app = configured_app()
     config = dict(
         debug=True,
-        host='0.0.0.0',
-        port=3000,
+        host='127.0.0.1',
+        port=5000,
     )
     app.run(**config)
 

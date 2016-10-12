@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>人民公社</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+    <script src="/static/js/jquery-3.0.0.min.js"></script>
+    <script src="/static/js/weibo.js"></script>
+    <script src="/static/js/login.js"></script>
+    <script>
+        // setup
+        var setup = function () {
+            // tab click
+            $('.gua-tab > a').on('click', function () {
+                var self = $(this);
+                $('.active').removeClass('active');
+                self.addClass('active');
+            });
+
+            // tab action
+            var tabAction = function (position, showLogin) {
+                $(".gua-block").animate({
+                    "left": position
+                }, "fast");
+                $('#id-div-login').toggle(showLogin);
+                $('#id-div-signup').toggle(!showLogin);
+            };
+
+            $('#id-a-signup').on('click', function () {
+                var position = '98px';
+                var showLogin = false;
+                tabAction(position, showLogin);
+            });
+
+            $('#id-a-login').on('click', function () {
+                var position = '158px';
+                var showLogin = true;
+                tabAction(position, showLogin);
+            });
+
+            // select signup
+            $('#id-a-login').click();
+        };
+
+        var bindActions = function () {
+            $('#id-button-register').on('click', function () {
+                // 这个函数的定义在 login.js 里面
+                // js 就是可以这样随性地用
+                register();
+            });
+
+            $('#id-button-login').on('click', function () {
+                login();
+            });
+        };
+
+        var __main = function () {
+            setup();
+            bindActions();
+        };
+
+        $(document).ready(function () {
+            __main();
+        });
+    </script>
+</head>
+<body>
+<div class="gua-container">
+    <div class="gua-main">
+        <div class="gua-header">
+            <h1 class="gua-title">人民公社</h1>
+            <h2 style="color: #66ccff;">分享你的见解</h2>
+        </div>
+        <div class="gua-form">
+            <div class="gua-tab">
+                <a id="id-a-signup" href="#">注册</a>
+                <a id="id-a-login" href="#">登录</a>
+                <div class="gua-block"></div>
+            </div>
+            <div id="id-div-signup">
+                <div class="gua-form-textinput">
+                    <div class="gua-input-wrapper">
+                        <input id="id-input-username" type="text" placeholder="用户名（不少于 3 位）" required/>
+                    </div>
+                    <div class="gua-input-wrapper">
+                        <input id="id-input-password" type="text" placeholder="密码（不少于 3 位）" required/>
+                    </div>
+                </div>
+                <button id="id-button-register" class="gua-button-big">注册</button>
+            </div>
+            <div id="id-div-login">
+                <div class="gua-form-textinput">
+                    <div class="gua-input-wrapper">
+                        <input id="id-input-login-username" type="text" placeholder="用户名" required/>
+                    </div>
+                    <div class="gua-input-wrapper">
+                        <input id="id-input-login-password" type="text" placeholder="密码" required/>
+                    </div>
+                </div>
+                <button id="id-button-login" class="gua-button-big" type="submit">进入</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

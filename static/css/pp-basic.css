@@ -1,0 +1,80 @@
+#id-div-insert {
+    background-color: #FFFFFF;
+    -webkit-border-radius: 3%;
+    -moz-border-radius: 3%;
+    border-radius: 3%;
+}
+#id-div-insert div {
+    outline-width: 1px;
+    /*outline-style: dotted;*/
+    outline-color: red;
+}
+a .icon-remove {
+    padding: 0 2px;
+}
+.pp-flex-row {
+    display: flex;
+    flex-direction: row;
+}
+.flex-1 {
+    flex-grow: 1;
+}
+.pp-avatar-config {
+    text-align: center;
+}
+.pp-avatar {
+    min-width: 60px;
+}
+.pp-avatar-me {
+    border-radius: 15%;
+}
+.pp-panel {
+    border-color: gray;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+    padding: 5px 3px 10px 3px;
+}
+.pp-main {
+    margin-left: 3px;
+}
+.pp-main-footer {
+    height: 20px;
+    margin-top: 10px;
+}
+.pp-main-header a {
+    float: right;
+}
+.pp-weibo-pic {
+}
+.pp-comment-avatar {
+    width: 50px;
+}
+.pp-comment-group {
+    border-color: black;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+    padding: 5px 3px 10px 3px;
+}
+.pp-comment-item {
+    border-color: lightcoral;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+    padding: 5px 3px 3px 3px;
+}
+.pp-comment-content p {
+    margin-bottom: 3px;
+}
+.pp-comment-content span {
+    font-weight: bold;
+}
+div .icon-remove {
+    padding: 0;
+}
+.modal-body {
+    padding: 0 0 0 10px;
+}
+.modal-body-input {
+    border: none;
+    height: 30px;
+    width: 580px;
+}
