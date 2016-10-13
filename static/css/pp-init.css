@@ -37,11 +37,11 @@ a.pp-nav-item {
 .pp-div-main {
     padding: 0 180px;
     height: 500px;
+    background-color: #f5f8fa;
 }
 .pp-div-info {
     width: 288px;
-    height: 189px;
-    background: #000;
+    height: 500px;
 }
 .pp-div-content {
     width: 588px;
@@ -52,4 +52,46 @@ a.pp-nav-item {
     width: 288px;
     height: 210px;
     background: #ffce63;
+}
+.pp-div-user {
+
+}
+.pp-div-layer {
+    height: 95px;
+    background-color: #2B7BB9;
+}
+.pp-div-info-content {
+    background: #ffffff;
+}
+.pp-a-avatar {
+    float: left;
+    height: 69px;
+    width: 69px;
+    margin-top: -40px;
+    margin-left: 25px;
+    text-align: center;
+    background-color: #e6e6e6;
+}
+.pp-div-id {
+    padding: 5px 0 10px 100px;
+}
+.pp-span-username {
+    font-size: larger;
+    font-weight: bold;
+}
+.pp-div-profile {
+    margin-left: 11px;
+    padding: 8px 0;
+}
+.pp-div-profile ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.pp-div-profile ul li {
+    display: inline-block;
+    width: 72px;
+}
+.pp-span-status {
+    font-size: 0.8em;
 }
