@@ -1,0 +1,55 @@
+div {
+    outline-width: 1px;
+    outline-color: red;
+    outline-style: dashed;
+}
+a {
+    text-decoration: none;
+}
+a.pp-nav-item:hover {
+    color: #1b95e0;
+}
+.pp-div-nav {
+    height: 46px;
+    text-align: center;
+    padding:0 180px;
+    border-bottom:1px dashed black;
+}
+.pp-div-bird {
+    display: inline-block;
+    padding: 10px 0;
+}
+.pp-div-search {
+    display: inline-block;
+    padding:4px 3px;
+}
+.pp-left {
+    float: left;
+}
+.pp-right {
+    float: right;
+}
+a.pp-nav-item {
+    padding: 12px 15px;
+    text-align: center;
+    color: #66757f;
+}
+.pp-div-main {
+    padding: 0 180px;
+    height: 500px;
+}
+.pp-div-info {
+    width: 288px;
+    height: 189px;
+    background: #000;
+}
+.pp-div-content {
+    width: 588px;
+    height: 500px;
+    background-color: #9eff9e;
+}
+.pp-div-ads {
+    width: 288px;
+    height: 210px;
+    background: #ffce63;
+}

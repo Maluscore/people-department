@@ -9,7 +9,7 @@ from flask import url_for
 from flask import abort
 from functools import wraps
 from models.user import User
-
+from utils.log import log
 
 def current_user():
     # print('session, debug', session.permanent)

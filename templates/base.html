@@ -3,26 +3,37 @@
 <head>
     {% block head %}
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/pp-init.css">
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/pure-min.css">
     <script src='/static/js/jquery.min.js'></script>
     <title>{% block title %}base{% endblock %}</title>
     {% endblock %}
 </head>
 <body>
-    <nav>
-        <a class="pp-nav-item" href="#">主页</a>
-        <a class="pp-nav-item" href="#">通知</a>
-        <a class="pp-nav-item" href="#">私信</a>
+    <div class="pp-div-nav">
+        <a class="icon-home icon-large pp-nav-item pp-left" href="#"> 主页</a>
+        <a class="icon-bell icon-large pp-nav-item pp-left" href="#"> 通知</a>
+        <a class="icon-envelope icon-large pp-nav-item pp-left" href="#"> 私信</a>
         <div class="pp-div-bird">
             <img src="/static/img/twitter.png" id="pp-img-bird" title="just a bird">
         </div>
-        <div class="pp-div-search">
-            <input id="pp-id-search">
+        <a class="icon-spinner icon-large pp-nav-item pp-right" href="#">人民公社</a>
+        <!--必须结合 pure form 一起使用 = =-->
+        <div class="pure-form pp-div-search pp-right">
+            <input class="pure-input-rounded" id="pp-id-search" placeholder="搜点什么...">
         </div>
-        <a class="pp-nav-item" href="#">人民公社</a>
-    </nav>
-    <main>
+    </div>
+    <div class="pp-div-main">
+        <div class="pp-div-info pp-left">
 
-    </main>
+        </div>
+        <div class="pp-div-content pp-left">
+
+        </div>
+        <div class="pp-div-ads pp-left">
+
+        </div>
+    </div>
 </body>
 </html>

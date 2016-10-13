@@ -12,7 +12,7 @@ class User(db.Model, ModelMixin):
     password = db.Column(db.String())
     created_time = db.Column(db.Integer, default=0)
     deleted = db.Column(db.Integer, default=0)
-    tweets = db.relationship('tweet', backref='user')
+    tweets = db.relationship('Tweet', backref='user')
 
     # 这是引用别的表的数据的属性，表明了它关联的东西
     # tweets = db.relationship('Tweet', backref='user')

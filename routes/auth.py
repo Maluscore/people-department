@@ -21,6 +21,7 @@ def login_view():
 def register():
     print('register')
     form = request.get_json()
+    log('form is ', form)
     u = User(form)
     print('register 2')
     r = {
@@ -32,7 +33,7 @@ def register():
         # 保存到数据库
         u.gid = 10
         u.save()
-        r['next'] = request.args.get('next', url_for('controllers.timeline_view', user_id=u.id))
+        r['next'] = request.args.get('next', url_for('user.timeline_view', user_id=u.id))
         session.permanent = True
         session['username'] = u.username
     else:
@@ -56,7 +57,7 @@ def login():
     }
     if user is not None and user.validate_auth(form):
         r['success'] = True
-        r['next'] = request.args.get('next', url_for('controllers.timeline_view', user_id=user.id))
+        r['next'] = request.args.get('next', url_for('user.timeline_view', user_id=user.id))
         session.permanent = True
         session['username'] = username
     else:
