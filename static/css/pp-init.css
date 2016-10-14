@@ -19,19 +19,19 @@ a.pp-nav-item:hover {
     color: #1b95e0;
 }
 .pp-div-nav {
-    height: 6vh;
+    height: 6%;
     text-align: center;
-    padding:0 180px;
+    padding:0 15%;
     background-color: white;
     border-bottom:1px solid black;
 }
 .pp-div-bird {
     display: inline-block;
-    padding: 10px 0;
+    padding: 1.5% 0;
 }
 .pp-div-search {
     display: inline-block;
-    padding:4px 3px;
+    padding: 1%;
 }
 .pp-left {
     float: left;
@@ -39,24 +39,30 @@ a.pp-nav-item:hover {
 .pp-right {
     float: right;
 }
+.pp-inline-block {
+    display: inline-block;
+}
 a.pp-nav-item {
-    padding: 12px 15px;
+    padding: 1.5% 1%;
     text-align: center;
     color: #66757f;
 }
 .pp-div-main {
-    padding: 10px 180px 0 180px;
+    /*padding: 10px 180px 0 180px;*/
+    margin: 10px auto 0 auto;
+    width: 70%;;
 }
 .pp-div-info {
-    width: 288px;
+    width: 25%;
     height: 500px;
 }
 .pp-div-content {
-    width: 550px;
-    margin: 0 10px;
+    position: absolute;
+    width: 31%;
+    margin: 0 2%;
 }
 .pp-div-ads {
-    width: 288px;
+    width: 25%;
     height: 210px;
     background: #ffce63;
 }
@@ -111,7 +117,64 @@ a.pp-nav-item {
 .pp-div-trends span {
     line-height: 200px;
 }
+.pp-div-release {
+    background-color: #e9f1f8;
+    padding: 10px 20px;
+}
+.pp-div-toolbar {
+    padding: 5px 3px;
+}
 .pp-text-input {
     resize: none;
     height: 100px;
+}
+.pp-btn-input {
+    float: right;
+    background: rgb(0, 132, 180) !important;
+    color: #f8f9ff !important;
+}
+.icon-camera {
+    color: #329bc2
+}
+#id-div-insert {
+    background-color: #FFFFFF;
+    -webkit-border-radius: 3%;
+    -moz-border-radius: 3%;
+    border-radius: 3%;
+}
+.pp-flex-row {
+    display: flex;
+    flex-direction: row;
+}
+.flex-1 {
+    flex-grow: 1;
+}
+.pp-avatar-config {
+    text-align: center;
+}
+.pp-avatar {
+    min-width: 60px;
+    border-radius: 2%;
+}
+.pp-avatar-me {
+    border-radius: 15%;
+}
+.pp-panel {
+    border-color: gray;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+    padding: 5px 3px 10px 3px;
+}
+.pp-main {
+    margin-left: 3px;
+}
+.pp-main-footer {
+    height: 20px;
+    margin-top: 10px;
+}
+.pp-main-header a {
+    float: right;
+}
+.pp-weibo-text {
+    margin: 5px 0;
 }
