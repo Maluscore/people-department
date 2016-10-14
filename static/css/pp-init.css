@@ -64,7 +64,8 @@ a.pp-nav-item {
 .pp-div-ads {
     width: 25%;
     height: 210px;
-    background: #ffce63;
+    background: #eaeded;
+    text-align: center;
 }
 .pp-div-user {
 
@@ -163,7 +164,7 @@ a.pp-nav-item {
     border-color: gray;
     border-bottom-width: 1px;
     border-bottom-style: dotted;
-    padding: 5px 3px 10px 3px;
+    padding: 5px 3px 5px 3px;
 }
 .pp-main {
     margin-left: 3px;
@@ -176,5 +177,10 @@ a.pp-nav-item {
     float: right;
 }
 .pp-weibo-text {
-    margin: 5px 0;
+    margin: 1px 0;
+}
+.pp-main-footer a {
+    display: inline-block;
+    padding: 0 2em 0 0;
+    color: #aab8c2;
 }
