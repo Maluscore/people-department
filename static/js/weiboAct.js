@@ -43,8 +43,8 @@ var comment_open = function ($self) {
                             <div class="pp-comment-content">
                                 <p><span>${r.data[i].sender_name} :  </span>${r.data[i].content}</p>
                              </div>
-                            <div class="pp-comment-fotter">
-                                <time>${r.data[i].created_time}</time>
+                            <div class="pp-comment-footer">
+                                <time data-time=${r.data[i].created_time}></time>
                             </div>
                         </div>
                      </div>                
@@ -53,11 +53,11 @@ var comment_open = function ($self) {
             }
             log('拼凑成功', comment_zone);
             var comment_form = (`
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="评论..." id="id-input-comment">
+                <div class = "pp-div-comment-box">
+                        <input type="text" placeholder="评论..." id="id-input-comment">
                     <span class="input-group-btn">
-                        <button class="btn" id="id-btn-comment" style="background: #EEEEEE;">评论</button>
-                    </span>
+                        <button class="btn" id="id-btn-comment">评论</button>
+                    </span>                    
                 </div>
             `);
             comment_zone.prepend(comment_form);
@@ -138,8 +138,8 @@ var add_comment = function ($self) {
                             <div class="pp-comment-content">
                                 <p><span>${r.data.sender_name} :  </span>${r.data.content}</p>
                              </div>
-                            <div class="pp-comment-fotter">
-                                <time>${r.data.created_time}</time>
+                            <div class="pp-comment-footer">
+                                <time data-time=${r.data.created_time}></time>
                             </div>
                         </div>
                     </div>
@@ -239,7 +239,7 @@ var tweet_thumbs_up = function ($self) {
                 icon.css("color", "#e81c4f");
             } else {
                 num = num - 1;
-                icon.css("color", "#337ab7");
+                icon.css("color", "#aab8c2");
             }
             icon.text(' ' + num);
         } else {
@@ -253,32 +253,33 @@ var tweet_thumbs_up = function ($self) {
 };
 
 weibo.tweet_delete = function (form, success, error) {
-    url = '/api/tweet/delete';
+    url = '/tweet/delete';
     weibo.post(url, form, success, error);
 };
 
 weibo.tweet_share = function (form, success, error) {
-    url = '/api/tweet/share';
+    url = '/tweet/share';
     weibo.post(url, form, success, error);
 };
 
 weibo.tweet_comment = function (form, success, error) {
-    url = '/api/tweet/comment';
+    url = '/comment/add';
     weibo.post(url, form, success, error);
+    longTimeAgo('time');
 };
 
 weibo.comment_open = function (form, success, error) {
-    url = '/api/comment/open';
+    url = '/comment/open';
     weibo.post(url, form, success, error);
 };
 
 weibo.comment_close = function (form, success, error) {
-    url = '/api/comment/close';
+    url = '/comment/close';
     weibo.post(url, form, success, error);
 };
 
 weibo.tweet_thumbs_up = function (form, success, error) {
-    url = '/api/tweet/thumbs_up';
+    url = '/tweet/thumbs_up';
     weibo.post(url, form, success, error);
 };
 

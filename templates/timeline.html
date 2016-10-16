@@ -1,2 +1,109 @@
 {% extends "base.html" %}
 {% block title %}个人主页{% endblock %}
+{% block head %}
+    {{ super() }}
+    <script src="/static/js/weibo.js"></script>
+    <script src="/static/js/weiboAct.js"></script>
+    <script>
+        var bindActions = function () {
+            $('#id-btn-sub').on('click', function () {
+                tweet_add();
+            });
+            $('#id-div-insert').on('click', '.icon-remove', function () {
+                var $self = $(this);
+                tweet_delete($self);
+            });
+            $('#id-div-insert').on('click', '.icon-comment', function () {
+                var $self = $(this);
+                var status = $self.text();
+                if (status == '收起') {
+                    comment_close($self);
+                } else {
+                    comment_open($self);
+                }
+            });
+            $('#id-div-insert').on('click', '#id-btn-comment', function () {
+                log('准备添加评论');
+                var $self = $(this);
+                add_comment($self);
+            });
+            $('#id-div-insert').on('click', '.icon-thumbs-up', function() {
+                log('准备开赞');
+                var $self = $(this);
+                tweet_thumbs_up($self);
+            });
+            $('#id-div-insert').on('click', '.icon-share-alt', function () {
+                log('准备转发');
+                var ppModal = $('#myModal');
+                ppModal.modal('show');
+                $('#id-btn-share').on('click', function () {
+                    log(ppModal.find('#id-input-share').val());
+                    ppModal.modal('hide');
+                });
+                ppModal.on('hidden.bs.modal', function () {
+                    ppModal.find('#id-input-share').val('')
+                });
+            });
+        };
+
+        var __main = function () {
+            longTimeAgo('.pp-timestamp');
+            bindActions();
+            $(document).ajaxComplete(function () {
+                longTimeAgo('time');
+                longTimeAgo('.pp-timestamp');
+            });
+        };
+
+        $(document).ready(function () {
+            __main();
+        });
+    </script>
+{% endblock %}
+{% block content %}
+        <div class="pp-div-content pp-inline-block">
+            <div class="pp-div-release">
+                <div class="pure-form">
+                    <textarea class="pp-text-input pure-input-1" id="id-textarea-content" placeholder="说点什么"></textarea>
+                </div>
+                <div class="pp-div-toolbar">
+                    <span class="icon-camera icon-2x" title="上传照片"></span>
+                    <button class="pp-btn-input pure-button" id="id-btn-sub">发布</button>
+                </div>
+            </div>
+            <div id="id-div-insert">
+            {% for t in tweets %}
+                <div class="pp-panel pp-flex-row" data-id="{{ t.id }}">
+                    <div class="pp-avatar pp-avatar-config">
+                        <img class="pp-avatar-me" src="/static/img/head-min.jpg">
+                    </div>
+                    <div class="pp-main flex-1">
+                        <div class="pp-main-header">
+                            <strong class="pp-full-name">{{ t.sender_name }}</strong>
+                            <span class="pp-timestamp" data-time={{ t.created_time }}></span>
+                        </div>
+                        <div class="pp-main-content">
+                            <p class="pp-weibo-text">{{ t.content }}</p>
+                        </div>
+                        <!-- <div class="pp-main-pic">
+                               <img class="pp-weibo-pic" src="/static/img/main-pic.jpg">
+                           </div> -->
+                        <div class="pp-main-footer">
+                            <a class="btn icon-share-alt" title="转发"> 0</a>
+                            <a class="btn icon-comment" title="评论"> {{ t.com_count }}</a>
+                            {% if current_user.id in t.users_id() %}
+                            <a class="btn icon-thumbs-up" style="color: #e81c4f;" title="赞"> {{ t.likes_count() }}</a>
+                            {% else %}
+                            <a class="btn icon-thumbs-up" title="赞"> {{ t.likes_count() }}</a>
+                            {% endif %}
+                            <a class="btn icon-cog" title="设置"></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="pp-div-ads pp-right">
+            <p>诚邀广告位</p>
+        </div>
+{% endblock %}

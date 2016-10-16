@@ -27,11 +27,12 @@ a.pp-nav-item:hover {
 }
 .pp-div-bird {
     display: inline-block;
-    padding: 1.5% 0;
+    padding: 1.5% 0 0 0;
 }
 .pp-div-search {
     display: inline-block;
     padding: 1%;
+    font-size: .9em;
 }
 .pp-left {
     float: left;
@@ -86,6 +87,10 @@ a.pp-nav-item {
     text-align: center;
     background-color: #e6e6e6;
 }
+#pp-id-avatar {
+    position: relative;
+    top: 5px;
+}
 .pp-div-id {
     padding: 5px 0 10px 100px;
 }
@@ -104,7 +109,7 @@ a.pp-nav-item {
 }
 .pp-div-profile ul li {
     display: inline-block;
-    width: 72px;
+    width: 30%;
 }
 .pp-span-status {
     font-size: 0.8em;
@@ -181,6 +186,50 @@ a.pp-nav-item {
 }
 .pp-main-footer a {
     display: inline-block;
-    padding: 0 2em 0 0;
+    width: 4em;
     color: #aab8c2;
+}
+.pp-timestamp {
+    font-size: 70%;
+    color: gray
+}
+.pp-main-footer a {
+    cursor: pointer;
+}
+.pp-main-footer a:hover{
+    color: #1b95e0;
+}
+.input-group-btn {
+    float: right;
+}
+.pp-div-comment-box {
+    padding: 0 0 0 1%;
+}
+#id-input-comment {
+    width: 85%;
+}
+.pp-comment-avatar {
+    width: 50px;
+}
+.pp-comment-group {
+    border-color: black;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+    padding: 5px 3px 10px 3px;
+}
+.pp-comment-item {
+    border-color: lightcoral;
+    border-bottom-width: 1px;
+    border-bottom-style: dotted;
+    padding: 5px 3px 3px 3px;
+}
+.pp-comment-content p {
+    margin: 1px 0;
+}
+.pp-comment-content span {
+    font-weight: bold;
+}
+.pp-comment-footer time {
+    font-size: 70%;
+    color: gray;
 }

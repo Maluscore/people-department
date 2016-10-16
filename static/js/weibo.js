@@ -1,10 +1,41 @@
 
-
 // log
 var log = function () {
     console.log(arguments);
 };
 
+// long time ago
+    var longTimeAgo = function(timeStamp) {
+      var timeAgo = function(time, ago) {
+        return Math.round(time) + ago;
+      };
+      log('开始处理时间');
+      $(timeStamp).each(function(i, e){
+        var past = parseInt(e.dataset.time);
+        var now = Math.round(new Date().getTime() / 1000);
+        var seconds = now - past;
+        var ago = seconds / 60;
+        // log('time ago', e, past, now, ago);
+        var oneHour = 60;
+        var oneDay = oneHour * 24;
+        // var oneWeek = oneDay * 7;
+        var oneMonth = oneDay * 30;
+        var oneYear = oneMonth * 12;
+        var s = '';
+        if(seconds < 60) {
+            s = timeAgo(seconds, '秒前')
+        } else if (ago < oneHour) {
+            s = timeAgo(ago, '分钟前');
+        } else if (ago < oneDay) {
+            s = timeAgo(ago/oneHour, '小时前');
+        } else if (ago < oneMonth) {
+            s = timeAgo(ago / oneDay, '天前');
+        } else if (ago < oneYear) {
+            s = timeAgo(ago / oneMonth, '月前');
+        }
+        $(e).text(s);
+      });
+    };
 
 // form 可以对一类的值进行处理与获取
 var formFromKeys = function(keys, prefix) {
@@ -30,7 +61,7 @@ var tweetForm = function () {
     var keys = [
         'content',
     ];
-    var tweetPrefix = 'id-input-';
+    var tweetPrefix = 'id-textarea-';
     var form = formFromKeys(keys, tweetPrefix);
     return form;
 };
@@ -49,8 +80,7 @@ var tweet_add = function () {
                             <div class="pp-main flex-1">
                                 <div class="pp-main-header">
                                     <strong class="pp-full-name">${r.data.username}</strong>
-                                    <span class="pp-timestamp">${r.data.created_time}</span>
-                                    <a class="icon-remove btn" title="删除"></a>
+                                    <span class="pp-timestamp" data-time=${r.data.created_time}></span>
                                 </div>
                                 <div class="pp-main-content">
                                     <p class="pp-weibo-text">${r.data.content}</p>
@@ -62,6 +92,7 @@ var tweet_add = function () {
                                     <a class="btn icon-share-alt" title="转发"> 0</a>
                                     <a class="btn icon-comment" title="评论"> 0</a>
                                     <a class="btn icon-thumbs-up" title="赞"> 0</a>
+                                    <a class="btn icon-cog" title="设置"></a>
                                 </div>
                             </div>
                         </div>
@@ -108,6 +139,6 @@ weibo.login = function(form, success, error) {
 };
 
 weibo.tweet_add = function (form, success, error) {
-    var url = '/api/tweet/add';
+    var url = '/tweet/add';
     this.post(url, form, success, error);
 };

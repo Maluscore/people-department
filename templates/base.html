@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="/static/css/pp-init.css">
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/css/pure-min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <script src='/static/js/jquery.min.js'></script>
+    <script src="/static/js/bootstrap.min.js"></script>
     <title>{% block title %}base{% endblock %}</title>
     {% endblock %}
 </head>
@@ -31,10 +33,10 @@
                 </div>
                 <div class="pp-div-info-content">
                     <a class="pp-a-avatar">
-                        <img src="#">
+                        <img id="pp-id-avatar" src="/static/img/head.png">
                     </a>
                     <div class="pp-div-id">
-                        <span class="pp-span-username">  username</span>
+                        <span class="pp-span-username">{{ current_user.username }}</span>
                     </div>
                     <div class="pp-div-profile">
                         <ul class="pp-ul-status">
@@ -64,21 +66,21 @@
                             <li class="pp-li-status-number">
                                 <a class="pp-a-status-number" href="#">
                                     <span class="pp-span-status-number">
-                                        1
+                                        {{ t_length }}
                                     </span>
                                 </a>
                             </li>
                             <li class="pp-li-status-number">
                                 <a class="pp-a-status-number" href="#">
                                     <span class="pp-span-status-number">
-                                        2
+                                        {{ follows_count }}
                                     </span>
                                 </a>
                             </li>
                             <li class="pp-li-status-number">
                                 <a class="pp-a-status-number" href="#">
                                     <span class="pp-span-status-number">
-                                        3
+                                        {{ fans_count }}
                                     </span>
                                 </a>
                             </li>
@@ -90,45 +92,8 @@
                 <span>正在施工。。。</span>
             </div>
         </div>
-        <div class="pp-div-content pp-inline-block">
-            <div class="pp-div-release">
-                <div class="pure-form">
-                    <textarea class="pp-text-input pure-input-1" placeholder="说点什么"></textarea>
-                </div>
-                <div class="pp-div-toolbar">
-                    <span class="icon-camera icon-2x" title="上传照片"></span>
-                    <button class="pp-btn-input pure-button">发布</button>
-                </div>
-            </div>
-            <div id="id-div-insert">
-                <div class="pp-panel pp-flex-row" data-id="1">
-                    <div class="pp-avatar pp-avatar-config">
-                        <img class="pp-avatar-me" src="/static/img/head-min.jpg">
-                    </div>
-                    <div class="pp-main flex-1">
-                        <div class="pp-main-header">
-                            <strong class="pp-full-name">malus</strong>
-                            <span class="pp-timestamp">12345</span>
-                        </div>
-                        <div class="pp-main-content">
-                            <p class="pp-weibo-text">what a beautiful day</p>
-                        </div>
-                        <!-- <div class="pp-main-pic">
-                               <img class="pp-weibo-pic" src="/static/img/main-pic.jpg">
-                           </div> -->
-                        <div class="pp-main-footer">
-                            <a class="btn icon-share-alt" title="转发"> 0</a>
-                            <a class="btn icon-comment" title="评论"> 1</a>
-                            <a class="btn icon-thumbs-up" title="赞"> 3</a>
-                            <a class="btn icon-cog" title="设置"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="pp-div-ads pp-right">
-            <p>诚邀广告位</p>
-        </div>
+        {% block content %}
+        {% endblock %}
     </div>
 </body>
 </html>

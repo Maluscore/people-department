@@ -6,7 +6,7 @@ from utils.time_formater import formatted_time
 main = Blueprint('tweet', __name__)
 
 
-@main.route('/tweet/add', methods=['POST'])
+@main.route('/add', methods=['POST'])
 def tweet_add():
     form = request.get_json()
     tweet = Tweet(form)
@@ -26,14 +26,14 @@ def tweet_add():
         # 下面不能用等号去接，不然就是空
         r['data'] = tweet.json()
         r['data']['username'] = u.username
-        r['data']['created_time'] = formatted_time(tweet.created_time)
+        r['data']['created_time'] = tweet.created_time
     else:
         r['message'] = '请输入有效内容'
     print(r)
     return jsonify(r)
 
 
-@main.route('/tweet/delete', methods=['POST'])
+@main.route('/delete', methods=['POST'])
 def tweet_delete():
     form = request.get_json()
     # print('debug form, ', form)
@@ -50,7 +50,7 @@ def tweet_delete():
     return jsonify(r)
 
 
-@main.route('/tweet/thumbs_up', methods=['POST'])
+@main.route('/thumbs_up', methods=['POST'])
 def tweet_up():
     form = request.get_json()
     t = Tweet.query.filter_by(id=form['id']).first()

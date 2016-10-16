@@ -11,6 +11,7 @@ def timeline_view(user_id):
     follow_count = Follow.follow_count(u.id)
     fans = Follow.fans(u.id)
     tweets = [t for t in u.tweets if t.deleted == 0]
+    t_length = len(tweets)
     # print('debug t,', tweets)
     all_follows = []
     for i in follow_count:
@@ -22,6 +23,7 @@ def timeline_view(user_id):
     show_tweets = tweets + follow_tweets
     show_tweets.sort(key=lambda t: t.created_time, reverse=True)
     d = dict(
+        t_length = t_length,
         current_user=u,
         tweets=show_tweets,
         follows_count=len(follow_count),

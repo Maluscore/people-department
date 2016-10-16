@@ -5,7 +5,7 @@ from  models.comment import Comment
 main = Blueprint('comment', __name__)
 
 
-@main.route('/comment/add', methods=['POST'])
+@main.route('/add', methods=['POST'])
 def comment_add():
     u = current_user()
     form = request.get_json()
@@ -32,7 +32,7 @@ def comment_add():
     return jsonify(r)
 
 
-@main.route('/comment/open', methods=['POST'])
+@main.route('/open', methods=['POST'])
 def comment_open():
     form = request.get_json()
     print('AJAX传递成功，form是：', form)
@@ -52,7 +52,7 @@ def comment_open():
 
 
 # 关闭评论
-@main.route('/comment/close', methods=['POST'])
+@main.route('/close', methods=['POST'])
 def comment_close():
     form = request.get_json()
     print('关闭评论，form是：', form)
