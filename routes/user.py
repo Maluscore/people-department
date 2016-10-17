@@ -8,6 +8,7 @@ main = Blueprint('user', __name__)
 @login_required
 def timeline_view(user_id):
     u = User.query.filter_by(id=user_id).first_or_404()
+    log('u is ,', u)
     follow_count = Follow.follow_count(u.id)
     fans = Follow.fans(u.id)
     tweets = [t for t in u.tweets if t.deleted == 0]
@@ -18,7 +19,7 @@ def timeline_view(user_id):
         all_follows.append(User.query.filter_by(id=i).first())
     all_follow_tweets = []
     for i in all_follows:
-        all_follow_tweets += i.tweets
+        all_follow_tweets.extend(i.tweets)
     follow_tweets = [t for t in all_follow_tweets if t.deleted == 0]
     show_tweets = tweets + follow_tweets
     show_tweets.sort(key=lambda t: t.created_time, reverse=True)
@@ -127,57 +128,100 @@ def profile_view(user_id):
     for i in all_follows:
         all_follow_tweets += i.tweets
     tweets.sort(key=lambda t: t.created_time, reverse=True)
+    login_id = session['user_id']
+    if u.id in Follow.follow_count(login_id):
+        status = '取消关注'
+    else:
+        status = '关注'
     d = dict(
         t_length=t_length,
         current_user=u,
-        login_id=session['user_id'],
+        login_id=login_id,
         tweets=tweets,
         follows_count=len(follow_count),
         fans_count=len(fans),
+        status=status,
     )
     return render_template('user_profile.html', **d)
 
 
-# 显示 关注列表 的界面 GET
-@main.route('/follow/list/<user_id>')
+@main.route('/follow/list/<int:user_id>', methods=['POST'])
 @login_required
-def follow_view(user_id):
-    user_now = current_user()
-    user = User.query.filter_by(id=user_id).first()
-    follow_count = Follow.follow_count(user.id)
-    fans = Follow.fans(user.id)
-    follow_id = Follow.follow_count(user_id)
-    follow_users = []
-    for i in follow_id:
-        follow_users.append(User.query.filter_by(id=i).first())
-    follow_users.sort(key=lambda t: t.created_time, reverse=True)
+def following_alloc(user_id):
+    r = dict(
+        message='跳转成功',
+        success=True,
+        next='/user/follow/list/{}'.format(user_id)
+    )
+    return jsonify(r)
+
+
+# 显示 关注列表 的界面 GET
+@main.route('/follow/list/<int:user_id>')
+@login_required
+def following_view(user_id):
+    u = User.query.filter_by(id=user_id).first_or_404()
+    follow_count = Follow.follow_count(u.id)
+    fans = Follow.fans(u.id)
+    tweets = [t for t in u.tweets if t.deleted == 0]
+    t_length = len(tweets)
+    # print('debug t,', tweets)
+    all_follows = []
+    for i in follow_count:
+        all_follows.append(User.query.filter_by(id=i).first())
+    login_id = session['user_id']
+    if u.id in Follow.follow_count(login_id):
+        status = '取消关注'
+    else:
+        status = '关注'
     d = dict(
-        current_user=user_now,
-        all_follows=follow_users,
-        user=user,
+        t_length=t_length,
+        current_user=u,
+        login_id=login_id,
         follows_count=len(follow_count),
         fans_count=len(fans),
+        status=status,
+        following=all_follows,
     )
-    return render_template('follow_users.html', **d)
+    return render_template('follow_list.html', **d)
+
+
+@main.route('/fan/list/<int:user_id>', methods=['POST'])
+@login_required
+def fan_alloc(user_id):
+    r = dict(
+        message='跳转成功',
+        success=True,
+        next='/user/fan/list/{}'.format(user_id)
+    )
+    return jsonify(r)
 
 
 # 显示 粉丝列表 的界面 GET
 @main.route('/fan/list/<user_id>')
 @login_required
 def fan_view(user_id):
-    user_now = current_user()
-    user = User.query.filter_by(id=user_id).first()
+    u = User.query.filter_by(id=user_id).first_or_404()
+    follow_count = Follow.follow_count(u.id)
     all_fans = Follow.fans(user_id)
-    follow_count = Follow.follow_count(user_id)
+    tweets = [t for t in u.tweets if t.deleted == 0]
+    t_length = len(tweets)
+    login_id = session['user_id']
+    if u.id in Follow.follow_count(login_id):
+        status = '取消关注'
+    else:
+        status = '关注'
     all_fans.sort(key=lambda t: t.created_time, reverse=True)
     d = dict(
-        current_user=user_now,
-        all_fans=all_fans,
-        user=user,
+        t_length=t_length,
+        current_user=u,
+        login_id=login_id,
         follows_count=len(follow_count),
         fans_count=len(all_fans),
+        status=status,
+        all_fans=all_fans,
     )
-    return render_template('fan_users.html', **d)
+    return render_template('fans_list.html', **d)
 
 
 # 处理 关注用户 的请求
@@ -195,7 +239,6 @@ def follow_act():
     }
     print('debug, ', r['message'])
     return jsonify(r)
-    # return redirect(url_for('timeline_view', username=u.username))
 
 
 # 处理 取消关注 的请求
@@ -212,4 +255,4 @@ def unfollow_act():
     }
     print('debug, ', r['message'])
     return jsonify(r)
-    # return redirect(url_for('timeline_view', username=u.username))
+

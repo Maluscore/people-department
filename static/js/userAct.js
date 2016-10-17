@@ -28,7 +28,7 @@ user.ajax = function(url, method, form, success, error) {
     };
     if(method === 'post') {
         var data = JSON.stringify(form);
-        log('data, ', data)
+        log('data, ', data);
         request.data = data;
     }
     $.ajax(request);
@@ -46,30 +46,31 @@ user.post = function(url, form, success, error) {
 };
 
 var user_act = function (user_id) {
-    var status = $('a#status').text();
-    var numberFollows = $('#id-badge-follows');
-    var numberFans = $('#id-badge-fans');
-    var count;
+    var status = $('.pp-button-status').text();
+    // var numberFollows = $('#id-badge-follows');
+    // var numberFans = $('#id-badge-fans');
+    // var count;
+    var success;
     if (status == '关注') {
-        var url = '/api/follow';
-        var success = function () {
+        var url = '/user/follow';
+        success = function () {
             log('status success, ');
-            $('a#status').text('取消关注');
-            count = +numberFans.text();
-            numberFans.text(count+1);
+            $('.pp-button-status').text('取消关注');
+            // count = +numberFans.text();
+            // numberFans.text(count+1);
         };
     }else if (status =='取消关注') 
         {
-        url = '/api/unfollow';
-        var success = function () {
+        url = '/user/unfollow';
+        success = function () {
             log('status error, ');
-            $('a#status').text('关注');
-            count = +numberFans.text();
-            numberFans.text(count-1);
+            $('.pp-button-status').text('关注');
+            // count = +numberFans.text();
+            // numberFans.text(count-1);
         }
     }
     var form = {
-        id: user_id
+        id: parseInt(user_id)
     };
     var error = function (err) {
         log('reg, ', err);
@@ -115,6 +116,44 @@ var show_weibo = function (userId) {
             //             </div>`);
             //     $('.pp-div-tweets-list').append(tweet_item);
             // }
+            window.location.href = r.next;
+        } else {
+            log('操作失败')
+        }
+    };
+    var error = function (err) {
+        log('reg, ', err);
+    };
+    user.post(url, form, success, error)
+};
+
+var show_followers = function (userId) {
+    var url = '/user/follow/list/' + userId;
+    var form = {
+        id: userId
+    };
+    var success = function (r) {
+        if (r.success) {
+            log(r.message);
+            window.location.href = r.next;
+        } else {
+            log('操作失败')
+        }
+    };
+    var error = function (err) {
+        log('reg, ', err);
+    };
+    user.post(url, form, success, error)
+};
+
+var show_fans = function (userId) {
+    var url = '/user/fan/list/' + userId;
+    var form = {
+        id: userId
+    };
+    var success = function (r) {
+        if (r.success) {
+            log(r.message);
             window.location.href = r.next;
         } else {
             log('操作失败')

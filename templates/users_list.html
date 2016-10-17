@@ -56,7 +56,9 @@
             <div class="pp-div-users-list">
                 {% for u in user_all %}
                     <div class="pp-div-user-item">
-                        <p>{{ u.username }}</p>
+                        <a class="pp-a-user-item" href="/user/profile/{{ u.id }}">
+                            <p>{{ u.username }}</p>
+                        </a>
                     </div>
                 {% endfor %}
             </div>

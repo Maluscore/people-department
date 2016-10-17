@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}正在关注{% endblock %}
+{% block head %}
+    {{ super() }}
+    <script src="/static/js/weibo.js"></script>
+    <script src="/static/js/weiboAct.js"></script>
+    <script src="/static/js/userAct.js"></script>
+    <script>
+        var bindActions = function () {
+            $('.pp-div-status').on('click', '.pp-button-status',  function () {
+                var user_id = $('.pp-div-id').attr('data-id');
+                log('user_id', user_id);
+                user_act(user_id);
+            });
+        };
+
+        var __main = function () {
+            longTimeAgo('.pp-timestamp');
+            bindActions();
+            $(document).ajaxComplete(function () {
+                longTimeAgo('time');
+                longTimeAgo('.pp-timestamp');
+            });
+            __baseMain();
+        };
+
+        $(document).ready(function () {
+            __main();
+        });
+    </script>
+{% endblock %}
+{% block content %}
+        <div class="pp-div-content pp-inline-block">
+            <div class="pp-div-status">
+                <span class="pp-span-status">关注列表</span>
+                {% if current_user.id != login_id %}
+                <button class="pure-button-primary pp-right pp-button-status">{{ status }}</button>
+                {% endif %}
+            </div>
+            <div class="pp-div-following">
+            {% for u in following %}
+                <p>{{ u.username }}</p>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="pp-div-ads pp-right">
+            <p>诚邀广告位</p>
+        </div>
+{% endblock %}

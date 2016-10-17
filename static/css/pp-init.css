@@ -10,7 +10,7 @@ body {
 div {
     outline-width: 1px;
     outline-color: red;
-    outline-style: dashed;
+    /*outline-style: dashed;*/
 }
 a {
     text-decoration: none;
@@ -235,4 +235,7 @@ a.pp-nav-item {
 }
 .pp-div-tweets-list {
     background-color: white;
+}
+.pp-div-status {
+    margin: 1em 0;
 }

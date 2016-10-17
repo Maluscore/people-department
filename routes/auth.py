@@ -65,6 +65,7 @@ def login():
     else:
         r['success'] = False
         r['message'] = '登录失败'
+    log('登录成功')
     return jsonify(r)
 
 

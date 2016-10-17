@@ -33,6 +33,11 @@
                 var $self = $(this);
                 tweet_thumbs_up($self);
             });
+            $('.pp-div-status').on('click', '.pp-button-status',  function () {
+                var user_id = $('.pp-div-id').attr('data-id');
+                log('user_id', user_id);
+                user_act(user_id);
+            });
         };
 
         var __main = function () {
@@ -52,14 +57,11 @@
 {% endblock %}
 {% block content %}
         <div class="pp-div-content pp-inline-block">
-            <div class="pp-div-release">
-                <div class="pure-form">
-                    <textarea class="pp-text-input pure-input-1" id="id-textarea-content" placeholder="说点什么"></textarea>
-                </div>
-                <div class="pp-div-toolbar">
-                    <span class="icon-camera icon-2x" title="上传照片"></span>
-                    <button class="pp-btn-input pure-button" id="id-btn-sub">发布</button>
-                </div>
+            <div class="pp-div-status">
+                <span class="pp-span-status">全部推文</span>
+                {% if current_user.id != login_id %}
+                <button class="pure-button-primary pp-right pp-button-status">{{ status }}</button>
+                {% endif %}
             </div>
             <div id="id-div-insert">
             {% for t in tweets %}
