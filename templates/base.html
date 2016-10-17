@@ -6,17 +6,34 @@
     <link rel="stylesheet" href="/static/css/pp-init.css">
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/css/pure-min.css">
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <script src='/static/js/jquery.min.js'></script>
-    <script src="/static/js/bootstrap.min.js"></script>
+    <script>
+        var baseActions = function () {
+            var userId = $(".pp-div-id").attr("data-id");
+
+            $('.pp-li-weibo').on('click', function () {
+                show_weibo(userId);
+            });
+            $('.pp-li-following').on('click', function () {
+                show_followers(userId);
+            });
+            $('.pp-li-fans').on('click', function () {
+                show_fans(userId);
+            });
+        };
+        var __baseMain = function () {
+            baseActions();
+        };
+
+    </script>
     <title>{% block title %}base{% endblock %}</title>
     {% endblock %}
 </head>
 <body>
     <div class="pp-div-nav">
-        <a class="icon-home icon-large pp-nav-item pp-left" href="#"> 主页</a>
+        <a class="icon-home icon-large pp-nav-item pp-left" href="/user/timeline/{{ login_id }}"> 主页</a>
         <a class="icon-bell icon-large pp-nav-item pp-left" href="#"> 通知</a>
-        <a class="icon-envelope icon-large pp-nav-item pp-left" href="#"> 私信</a>
+        <a class="icon-envelope icon-large pp-nav-item pp-left" href="/user/all/{{ login_id }}"> 所有用户</a>
         <div class="pp-div-bird">
             <img src="/static/img/twitter.png" id="pp-img-bird" title="just a bird">
         </div>
@@ -35,26 +52,26 @@
                     <a class="pp-a-avatar">
                         <img id="pp-id-avatar" src="/static/img/head.png">
                     </a>
-                    <div class="pp-div-id">
+                    <div class="pp-div-id" data-id="{{ current_user.id }}">
                         <span class="pp-span-username">{{ current_user.username }}</span>
                     </div>
                     <div class="pp-div-profile">
                         <ul class="pp-ul-status">
-                            <li class="pp-li-status">
+                            <li class="pp-li-status pp-li-weibo">
                                 <a class="pp-a-status" href="#">
                                     <span class="pp-span-status">
                                         推文
                                     </span>
                                 </a>
                             </li>
-                            <li class="pp-li-status">
+                            <li class="pp-li-status pp-li-following">
                                 <a class="pp-a-status" href="#">
                                     <span class="pp-span-status">
                                         正在关注
                                     </span>
                                 </a>
                             </li>
-                            <li class="pp-li-status">
+                            <li class="pp-li-status pp-li-fans">
                                 <a class="pp-a-status" href="#">
                                     <span class="pp-span-status">
                                         关注者

@@ -17,6 +17,48 @@ var tweet_chosen = function ($self) {
     return tweetSelf
 };
 
+var tweet_add = function () {
+    var form = tweetForm();
+    var success = function (r) {
+        log('r, ', r);
+        if (r.success){
+            log(r.message);
+            var addContent = (`
+                        <div class="pp-panel pp-flex-row" data-id="${r.data.id}">
+                            <div class="pp-avatar pp-avatar-config">
+                                <img class="pp-avatar-me" src="/static/img/head-min.jpg">
+                            </div>
+                            <div class="pp-main flex-1">
+                                <div class="pp-main-header">
+                                    <strong class="pp-full-name">${r.data.username}</strong>
+                                    <span class="pp-timestamp" data-time=${r.data.created_time}></span>
+                                </div>
+                                <div class="pp-main-content">
+                                    <p class="pp-weibo-text">${r.data.content}</p>
+                                </div>
+                               <!-- <div class="pp-main-pic">
+                                    <img class="pp-weibo-pic" src="/static/img/main-pic.jpg">
+                                </div> -->
+                                <div class="pp-main-footer">
+                                    <a class="btn icon-share-alt" title="转发"> 0</a>
+                                    <a class="btn icon-comment" title="评论"> 0</a>
+                                    <a class="btn icon-thumbs-up" title="赞"> 0</a>
+                                    <a class="btn icon-cog" title="设置"></a>
+                                </div>
+                            </div>
+                        </div>
+                                `);
+            var insertPlace = $('#id-div-insert');
+            insertPlace.prepend(addContent);
+        }else {
+            alert('发布失败');
+        }
+    };
+    var error = function (err) {
+        log('reg, ', err);
+    };
+    weibo.tweet_add(form, success, error);
+};
 
 // 展开评论区
 var comment_open = function ($self) {
@@ -283,5 +325,7 @@ weibo.tweet_thumbs_up = function (form, success, error) {
     weibo.post(url, form, success, error);
 };
 
-// TODO:
-// 增加api，绑定动作
+weibo.tweet_add = function (form, success, error) {
+    var url = '/tweet/add';
+    weibo.post(url, form, success, error);
+};

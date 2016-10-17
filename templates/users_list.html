@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}所有用户{% endblock %}
+{% block head %}
+    {{ super() }}
+    <script src="/static/js/weibo.js"></script>
+    <script src="/static/js/weiboAct.js"></script>
+    <script src="/static/js/userAct.js"></script>
+    <script>
+        var bindActions = function () {
+            $('#id-btn-sub').on('click', function () {
+                tweet_add();
+            });
+            $('#id-div-insert').on('click', '.icon-remove', function () {
+                var $self = $(this);
+                tweet_delete($self);
+            });
+            $('.pp-div-content').on('click', '.icon-comment', function () {
+                var $self = $(this);
+                var status = $self.text();
+                if (status == '收起') {
+                    comment_close($self);
+                } else {
+                    comment_open($self);
+                }
+            });
+            $('.pp-div-content').on('click', '#id-btn-comment', function () {
+                log('准备添加评论');
+                var $self = $(this);
+                add_comment($self);
+            });
+            $('.pp-div-content').on('click', '.icon-thumbs-up', function() {
+                log('准备开赞');
+                var $self = $(this);
+                tweet_thumbs_up($self);
+            });
+        };
+
+        var __main = function () {
+            longTimeAgo('.pp-timestamp');
+            bindActions();
+            $(document).ajaxComplete(function () {
+                longTimeAgo('time');
+                longTimeAgo('.pp-timestamp');
+            });
+            __baseMain();
+        };
+
+        $(document).ready(function () {
+            __main();
+        });
+    </script>
+{% endblock %}
+{% block content %}
+        <div class="pp-div-content pp-inline-block">
+            <h1>所有用户</h1>
+            <div class="pp-div-users-list">
+                {% for u in user_all %}
+                    <div class="pp-div-user-item">
+                        <p>{{ u.username }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="pp-div-ads pp-right">
+            <p>诚邀广告位</p>
+        </div>
+{% endblock %}

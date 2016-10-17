@@ -36,6 +36,7 @@ def register():
         r['next'] = request.args.get('next', url_for('user.timeline_view', user_id=u.id))
         session.permanent = True
         session['username'] = u.username
+        session['user_id'] = u.id
     else:
         print('register failed', form)
         r['success'] = False
@@ -60,6 +61,7 @@ def login():
         r['next'] = request.args.get('next', url_for('user.timeline_view', user_id=user.id))
         session.permanent = True
         session['username'] = username
+        session['user_id'] = user.id
     else:
         r['success'] = False
         r['message'] = '登录失败'
