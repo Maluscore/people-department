@@ -37,9 +37,13 @@
                 <button class="pure-button-primary pp-right pp-button-status">{{ status }}</button>
                 {% endif %}
             </div>
-            <div class="pp-div-following">
+            <div class="pp-div-following pp-white">
             {% for u in following %}
-                <p>{{ u.username }}</p>
+                <div class="pp-div-following-item pp-special-first">
+                    <a class="pp-a-following-item pp-special-second" href="/user/profile/{{ u.id }}">
+                        <span>{{ u.username }}</span>
+                    </a>
+                </div>
             {% endfor %}
             </div>
         </div>

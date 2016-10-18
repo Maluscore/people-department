@@ -239,3 +239,36 @@ a.pp-nav-item {
 .pp-div-status {
     margin: 1em 0;
 }
+div .pp-white {
+    background-color: white;
+}
+.pp-special-first {
+    margin: 1em 0;
+}
+.pp-a-status:link {
+    color: #000;
+}
+.pp-a-status:visited {
+    color: #000;
+}
+.pp-a-status:active {
+    color: lightcoral;;
+}
+.pp-a-status-number:link {
+    color: #000;
+}
+.pp-a-status-number:visited {
+    color: #000;
+}
+.pp-a-status-number:active {
+    color: lightcoral;;
+}
+div .pp-special-second:link {
+    color: #000;
+}
+div .pp-special-second:visited {
+    color: #000;
+}
+div .pp-special-second:active {
+    color: lightcoral;
+}

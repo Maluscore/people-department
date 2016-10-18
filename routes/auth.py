@@ -74,4 +74,5 @@ def login():
 @login_required
 def logoff():
     session.pop('username')
+    session.pop('user_id')
     return redirect(url_for('.login_view'))

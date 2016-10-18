@@ -53,11 +53,11 @@
 {% block content %}
         <div class="pp-div-content pp-inline-block">
             <h1>所有用户</h1>
-            <div class="pp-div-users-list">
+            <div class="pp-div-users-list pp-white">
                 {% for u in user_all %}
-                    <div class="pp-div-user-item">
-                        <a class="pp-a-user-item" href="/user/profile/{{ u.id }}">
-                            <p>{{ u.username }}</p>
+                    <div class="pp-div-user-item pp-special-first">
+                        <a class="pp-a-user-item pp-special-second" href="/user/profile/{{ u.id }}">
+                            <sapn>{{ u.username }}</sapn>
                         </a>
                     </div>
                 {% endfor %}
