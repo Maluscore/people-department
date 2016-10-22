@@ -1,5 +1,5 @@
 from routes import *
-
+from models.tweet import Tweet
 main = Blueprint('auth', __name__)
 
 
@@ -76,3 +76,10 @@ def logoff():
     session.pop('username')
     session.pop('user_id')
     return redirect(url_for('.login_view'))
+
+
+# @main.route('/test_data')
+# def test_for_data():
+#     tweets = Tweet.query.filter(Tweet.user_id.in_([1, 2])).all()
+#     print(tweets)
+#     return b'ok'

@@ -6,6 +6,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f5f8fa;
+    font-family: "Microsoft YaHei UI";
 }
 div {
     outline-width: 1px;
@@ -67,6 +68,7 @@ a.pp-nav-item {
     height: 210px;
     background: #eaeded;
     text-align: center;
+    border-radius: 1em;
 }
 .pp-div-user {
 
@@ -74,9 +76,11 @@ a.pp-nav-item {
 .pp-div-layer {
     height: 95px;
     background-color: #2B7BB9;
+    border-radius:1em 1em 0 0;
 }
 .pp-div-info-content {
     background: #ffffff;
+    border-radius:0 0 1em 1em;
 }
 .pp-a-avatar {
     float: left;
@@ -85,11 +89,12 @@ a.pp-nav-item {
     margin-top: -40px;
     margin-left: 25px;
     text-align: center;
-    background-color: #e6e6e6;
+    /*background-color: #e6e6e6;*/
 }
 #pp-id-avatar {
-    position: relative;
-    top: 5px;
+    /*position: relative;*/
+    /*top: 5px;*/
+    border-radius: 1em;
 }
 .pp-div-id {
     padding: 5px 0 10px 100px;
@@ -126,6 +131,7 @@ a.pp-nav-item {
 .pp-div-release {
     background-color: #e9f1f8;
     padding: 10px 20px;
+    border-radius: 1em 1em 0 0;
 }
 .pp-div-toolbar {
     padding: 5px 3px;
